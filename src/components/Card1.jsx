@@ -16,7 +16,7 @@ function Card1() {
       <div className="d-flex flex-wrap gap-5 justify-content-evenly">
 
         <Card
-          image="/img/photo_2025-08-25_10-55-19.jpg"
+          image="./img/photo_2025-08-25_10-55-19.jpg"
           name="Yigitaliyev Yo‘ldashali Usmonaliyevich"
           subtitle="Fan: Filologiya"
           description={

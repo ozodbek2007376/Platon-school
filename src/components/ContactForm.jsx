@@ -18,10 +18,8 @@ export function ContactForm() {
 
   return (
     <div id="savollar" className="contact-form-container">
-      {/* Orqa fon */}
       <div className="background-pattern"></div>
 
-      {/* Asosiy qism */}
       <div className="form-wrapper">
         <h1 className="form-title">Maktabimiz haqida savollaringiz bormi?</h1>
         <p className="form-subtitle">

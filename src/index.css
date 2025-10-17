@@ -545,9 +545,63 @@ img {
 .footer-section a:hover {
   text-decoration: underline;
 }
+/* ///////////////////////// */
+.footer {
+  background-color: rgb(05, 37, 71);
+  color: white;
+  padding: 40px 0 20px 0;
+  font-family: Arial, sans-serif;
+}
+
+.footer h2 {
+  font-weight: bold;
+}
+
+.btn-consult {
+  margin-top: 15px;
+  background: white;
+  color: #059033;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-consult:hover {
+  background: #f1f1f1;
+}
+
+.footer-contact ul,
+.footer-social ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+}
 
 
+.footer-contact ul li,
+.footer-social ul li {
+  margin-bottom: 8px;
+}
 
+.footer-contact a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-contact a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  margin-top: 20px;
+  padding-top: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+/* ////////////////////////////// */
 
 
 
