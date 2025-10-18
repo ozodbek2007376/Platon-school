@@ -32,54 +32,88 @@ function Tion() {
         onSelect={setSelectedProgram}
       />
 
-      {/* Modal */}
       {selectedProgram && (
         <div
-          className="modal fade show d-block"
-          tabIndex="-1"
+          className="modal-backdrop"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setSelectedProgram(null)}
           style={{
+            position: "fixed",
+            inset: 0,
             background: "rgba(0,0,0,0.7)",
-            animation: "fadeIn 0.4s ease",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 9999,
+            padding: 20,
+            animation: "fadeIn .25s ease",
           }}
         >
           <div
-            className="modal-dialog modal-dialog-centered modal-lg"
-            style={{ animation: "zoomIn 0.4s ease" }}
+            className="modal-card"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              width: "100%",
+              maxWidth: 820,
+              borderRadius: 18,
+              padding: 18,
+              background: "linear-gradient(180deg, #2ecc71, #27ae60)",
+              color: "#062214",
+              boxShadow: "0 10px 40px rgba(2,6,23,0.35)",
+              maxHeight: "90vh",
+              overflowY: "auto",
+              position: "relative",
+            }}
           >
-            <div
-              className="modal-content text-white"
+            <button
+              onClick={() => setSelectedProgram(null)}
+              aria-label="Close"
               style={{
-                background: "linear-gradient(135deg, #2ecc71, #27ae60)",
-                borderRadius: "20px",
+                position: "absolute",
+                right: 14,
+                top: 12,
+                background: "transparent",
+                border: "none",
+                color: "#062214",
+                fontSize: 22,
+                cursor: "pointer",
+                padding: 6,
+                borderRadius: 8,
               }}
             >
-              <div className="modal-header border-0">
-                <h5 className="modal-title fw-bold">{selectedProgram.level}</h5>
-                <button
-                  type="button"
-                  className="btn-close btn-close-white"
-                  onClick={() => setSelectedProgram(null)}
-                ></button>
-              </div>
-              <div className="modal-body">
-                <h6 className="fw-bold">{selectedProgram.grade}</h6>
-                <p>{selectedProgram.text}</p>
-              </div>
-              <div className="modal-footer border-0">
-                <button
-                  className="btn btn-light text-success fw-bold px-4 py-2"
-                  style={{ borderRadius: "12px" }}
-                  onClick={() => setSelectedProgram(null)}
-                >
-                  Yopish
-                </button>
-              </div>
+              ×
+            </button>
+
+            <div style={{ paddingBottom: 12 }}>
+              <h4 className="fw-bold mb-2" style={{ color: "#042913" }}>
+                {selectedProgram.level}
+              </h4>
+              <h6 className="mb-2" style={{ color: "#042913" }}>
+                {selectedProgram.grade}
+              </h6>
+              <p style={{ color: "#042913" }}>{selectedProgram.text}</p>
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                gap: 12,
+                justifyContent: "flex-end",
+                marginTop: 8,
+              }}
+            >
+              <button
+                className="btn btn-light text-success fw-bold px-4 py-2"
+                style={{ borderRadius: 12 }}
+                onClick={() => setSelectedProgram(null)}
+              >
+                Yopish
+              </button>
             </div>
           </div>
         </div>
       )}
-
-     
     </>
   );
 }

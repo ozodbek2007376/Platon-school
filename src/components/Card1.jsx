@@ -13,12 +13,14 @@ function Card1() {
           Farzandingizga sifatli ta'lim berish uchun biz eng yaxshi mutaxassislardan iborat jamoa tuzishga kirishdik
         </span>
       </h1>
-      <div className="d-flex flex-wrap gap-5 justify-content-evenly">
+
+      {/* changed: added team-grid class for responsive CSS */}
+      <div className="team-grid d-flex flex-wrap gap-5 justify-content-evenly">
 
         <Card
           image="./img/photo_2025-08-25_10-55-19.jpg"
           name="Yigitaliyev Yo‘ldashali Usmonaliyevich"
-          subtitle="Fan: Filologiya"
+          subtitle={<span className="subject-badge">Fan: Filologiya</span>}
           description={
             <>
               <div>FDU Filologiya yo'nalishi, bakalavr</div>
@@ -32,7 +34,7 @@ function Card1() {
         <Card
           image="./img/IMG_6622.JPG"
           name="Obidov Jasurbek Sharofiddin o'g'li"
-          subtitle="Fan: Ingliz tili"
+          subtitle={<span className="subject-badge">Fan: Ingliz tili</span>}
           description={
             <>
               <div>Oliy ma'lumot (Farg'ona davlat universiteti, bakalavr)</div>
@@ -42,10 +44,11 @@ function Card1() {
             </>
           }
         />
+
         <Card
           image="./img/IMG_6624.JPG"
           name="Isroilov Ozodbek Saydullajon o'g'li"
-          subtitle="Fan: Tarix"
+          subtitle={<span className="subject-badge">Fan: Tarix</span>}
           description={
             <>
               <div>6 yillik staj</div>
@@ -54,10 +57,11 @@ function Card1() {
             </>
           }
         />
+
         <Card
           image="./img/IMG_6625.JPG"
           name="Islombek Roʻziboyev Abdurashid oʻgʻli"
-          subtitle="Fan: Biologiya"
+          subtitle={<span className="subject-badge">Fan: Biologiya</span>}
           description={
             <>
               <div>7 yil ish tajribasi</div>
@@ -67,10 +71,11 @@ function Card1() {
             </>
           }
         />
+
         <Card
           image="./img/IMG_6624.JPG"
-          name="Abdulhayev Dilmuhammad Shuhratjon oʻgʻli"
-          subtitle="Fan: (yozilmadi)"
+          name="Abdulhayev Dilmuhammad Shuhratjon oʻg'li"
+          subtitle={<span className="subject-badge">Fan: (yozilmadi)</span>}
           description={
             <>
               <div>Bakalavr, QDPI 2023 da bitirgan</div>
@@ -85,7 +90,7 @@ function Card1() {
       {/* Kattaroq tugma: Bizning jamoaga qo'shilish uchun */}
       <div className="text-center mt-4">
         <button
-          className="btn btn-success btn-lg px-5 py-3"
+          className="btn btn-success btn-lg px-5 py-3 join-btn"
           style={{ fontSize: "1.05rem", borderRadius: 12 }}
           onClick={() => setShowModal(true)}
         >
@@ -115,12 +120,13 @@ function Card1() {
             style={{
               width: "100%",
               maxWidth: 720,
-              // background: "#0f1724",
               color: "#fff",
               borderRadius: 14,
               padding: 20,
               textAlign: "center",
               boxShadow: "0 10px 40px rgba(2,6,23,0.6)",
+              maxHeight: "90vh",
+              overflowY: "auto"
             }}
           >
             <button

@@ -511,12 +511,6 @@ img {
   flex-direction: column;
 }
 
-
-
-
-
-
-
 /* ///////  Footer  //////// */
 .footer-section {
   background-color: #00923F;
@@ -605,6 +599,58 @@ img {
 /* ////////////////////////////// */
 
 
+/* Add/merge these rules into your global CSS to make Footer responsive and accessible */
+
+.footer {
+  color: #e8fff0;
+  padding: 36px 16px;
+  background: linear-gradient(180deg, #071016, #07161a);
+}
+
+.footer .footer-logo h2 { font-size: 1.1rem; letter-spacing: .6px; }
+.footer .btn-consult { margin-top: 8px; border-radius: 10px; }
+
+/* contact / social / map blocks */
+.footer-contact, .footer-social, .footer-map {
+  min-width: 220px;
+}
+
+/* map responsive wrapper */
+.map-frame {
+  width: 320px;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(2,6,23,0.35);
+}
+.map-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* footer bottom */
+.footer-bottom { padding: 18px 8px; border-top: 1px solid rgba(255,255,255,0.03); color: rgba(255,255,255,0.7); }
+
+/* layout: stack on small screens */
+@media (max-width: 767.98px) {
+  .footer .container { flex-direction: column; align-items: center; gap: 18px; }
+  .footer-contact, .footer-social, .footer-map { text-align: center; min-width: auto; }
+  .map-frame { width: 100%; max-width: 420px; }
+}
+
+/* spacing for social list */
+.social-list li { margin-bottom: 8px; }
+.social-list a { display: inline-flex; align-items: center; gap: 8px; color: #eaffef; text-decoration: none; }
+
+/* icon sizing */
+.social-list i { font-size: 1.05rem; }
+
+/* small polish */
+.footer a.text-reset:hover { text-decoration: underline; color: #bfffe0;
+}
+
 
 
 
@@ -632,12 +678,46 @@ img {
   }
 }
 
+.subject-badge {
+  display: inline-block;
+  color: #e6ffee; /* engil text */
+  background: linear-gradient(90deg, rgba(28,255,128,0.12), rgba(28,255,128,0.06));
+  border: 1px solid rgba(28,255,128,0.35);
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-shadow: 0 0 6px rgba(28,255,128,0.9);
+  box-shadow:
+    0 0 6px rgba(28,255,128,0.35),
+    0 0 18px rgba(28,255,128,0.18) inset;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  animation: neonGlow 2s infinite alternate;
+}
 
+/* juda yorqin pulsatsiyali effekt */
+@keyframes neonGlow {
+  0% {
+    box-shadow:
+      0 0 4px rgba(28,255,128,0.35),
+      0 0 12px rgba(28,255,128,0.12) inset;
+    transform: translateY(0);
+  }
+  100% {
+    box-shadow:
+      0 0 12px rgba(28,255,128,0.9),
+      0 0 28px rgba(28,255,128,0.35) inset;
+    transform: translateY(-2px);
+  }
+}
 
-
-
-
-
+/* hover koʻproq porlash */
+.subject-badge:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 0 18px rgba(28,255,128,1),
+    0 0 40px rgba(28,255,128,0.45) inset;
+}
 
 @media (max-width: 900px) {
   .qabul-wrapper::after {
@@ -657,3 +737,542 @@ img {
     max-width: 100%;
   }
 }
+
+/* Responsive styles for team grid, badge and modal */
+
+/* Grid for small screens (mobile-first) */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+  justify-items: center;
+}
+
+/* Card image and card sizing (if Card uses .card class) */
+.team-grid .card,
+.team-grid .card-body,
+.team-grid img {
+  width: 100%;
+  max-width: 320px;
+}
+
+/* Larger screens: 2 columns on tablet, 3 on desktop */
+@media (min-width: 576px) {
+  .team-grid {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+}
+
+@media (min-width: 992px) {
+  .team-grid {
+    display: flex; /* preserve original layout on wide screens */
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: space-evenly;
+  }
+  .team-grid > * {
+    flex: 0 1 calc(33% - 2rem);
+    max-width: 360px;
+  }
+}
+
+/* Neon subject badge adjustments */
+.subject-badge {
+  display: inline-block;
+  color: #e6ffee;
+  background: linear-gradient(90deg, rgba(28,255,128,0.14), rgba(28,255,128,0.06));
+  border: 1px solid rgba(28,255,128,0.35);
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-shadow: 0 0 6px rgba(28,255,128,0.9);
+  box-shadow:
+    0 0 6px rgba(28,255,128,0.35),
+    0 0 18px rgba(28,255,128,0.18) inset;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  animation: neonGlow 2s infinite alternate;
+}
+
+/* Make badge smaller on very small devices */
+@media (max-width: 420px) {
+  .subject-badge {
+    font-size: 0.85rem;
+    padding: 5px 8px;
+  }
+}
+
+/* Modal responsiveness */
+.modal-card {
+  width: 100%;
+  margin: 0 16px;
+}
+
+/* On small screens reduce padding and font sizes inside modal */
+@media (max-width: 576px) {
+  .modal-card {
+    padding: 14px;
+    border-radius: 10px;
+  }
+  .join-btn {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    font-size: 0.98rem;
+  }
+}
+
+/* Ensure images inside Card do not overflow */
+.card img {
+  object-fit: cover;
+  height: auto;
+  max-height: 320px;
+}
+
+/* Utility: center grid items on small screens */
+.team-grid > * {
+  width: 100%;
+  max-width: 360px;
+}
+
+/* Add / merge these rules into your global CSS for responsive Hero + modal */
+
+/* HERO panel */
+.hero-panel {
+  background: rgba(15, 23, 42, 0.65);
+  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.25);
+  border-radius: 18px;
+  padding: 36px 28px;
+  backdrop-filter: blur(4px);
+}
+
+/* responsive heading: keeps it sharp across phones */
+.hero-title {
+  font-size: clamp(1.6rem, 4.6vw, 2.6rem); /* scales smoothly from small to large screens */
+  line-height: 1.05;
+  margin: 0;
+}
+
+/* button tweaks */
+.hero-btn {
+  border-radius: 12px;
+  transition: transform .18s ease, box-shadow .18s ease;
+  padding: 0.85rem 1.25rem;
+}
+.hero-btn:active { transform: translateY(1px); }
+
+/* Modal backdrop */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+/* Modal card */
+.modal-card {
+  width: 100%;
+  max-width: 720px;
+  background: linear-gradient(180deg, rgba(15,23,36,0.98), rgba(10,13,20,0.95));
+  color: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 10px 40px rgba(2,6,23,0.6);
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Close button */
+.modal-close {
+  position: absolute;
+  right: 14px;
+  top: 10px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+/* inner modal spacing (ContactForm wrapper) */
+.modal-inner {
+  padding: 6px;
+}
+
+/* Small screens adjustments */
+@media (max-width: 576px) {
+  .hero-panel {
+    padding: 18px 14px;
+    border-radius: 12px;
+  }
+
+  .hero-title {
+    font-size: clamp(1.25rem, 6.5vw, 1.6rem);
+  }
+
+  .hero-btn {
+    width: 100%;
+    max-width: 320px;
+    padding: 0.8rem;
+    font-size: 0.98rem;
+  }
+
+  .modal-backdrop {
+    padding: 12px;
+  }
+
+  .modal-card {
+    max-width: 420px;
+    padding: 14px;
+    border-radius: 12px;
+  }
+
+  .modal-close {
+    right: 10px;
+    top: 8px;
+    font-size: 20px;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 380px) {
+  .hero-title {
+    font-size: 1.15rem;
+  }
+  .hero-btn { padding: 0.7rem; font-size: 0.92rem; }
+  .modal-card { padding: 12px; }
+}
+
+/* Ensure ContactForm fields are full-width inside modal */
+.contact-form-container .input-field,
+.contact-form-container .phone-input,
+.contact-form-container .submit-btn {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Add or merge these rules into your global CSS */
+
+/* Container */
+.qabul { color: #fff; }
+
+/* Header */
+.qabul-header .Qabul { font-size: clamp(1.6rem, 3.8vw, 2.4rem); }
+.qabul-text { color: rgba(255,255,255,0.85); max-width: 820px; margin: 0 auto; }
+
+/* Timeline base */
+.qabul-wrapper.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* center line for large screens */
+.qabul-wrapper.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+  border-radius: 4px;
+  display: none;
+}
+
+/* Item */
+.timeline-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  padding: 12px;
+}
+
+/* Badge */
+.timeline-badge {
+  flex: 0 0 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1dd17d, #0aa05c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #042913;
+  font-weight: 800;
+  box-shadow: 0 6px 18px rgba(10,160,92,0.18);
+  font-size: 1rem;
+}
+
+/* Panel */
+.timeline-panel {
+  background: rgba(255,255,255,0.04);
+  border-radius: 12px;
+  padding: 14px 18px;
+  flex: 1;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* Left/right classes for wide screens (will be overridden per breakpoint) */
+.timeline-item.left  { flex-direction: row; }
+.timeline-item.right { flex-direction: row-reverse; text-align: left; }
+
+/* Align content when item is on right */
+.timeline-item.right .timeline-panel { text-align: left; }
+
+/* Responsive layout */
+/* Mobile: stacked */
+@media (max-width: 767.98px) {
+  .qabul-wrapper.timeline { padding: 6px; }
+  .timeline-item { flex-direction: row; }
+  .timeline-item .timeline-panel { padding: 12px; }
+  .qabul-wrapper.timeline::before { display: none; }
+}
+
+/* Tablet+ : center line and alternate sides */
+@media (min-width: 768px) {
+  .qabul-wrapper.timeline {
+    padding: 36px 12px;
+  }
+  .qabul-wrapper.timeline::before { display: block; }
+
+  .timeline-item {
+    width: calc(50% - 40px);
+    margin-bottom: 48px;
+    padding: 0;
+    align-items: flex-start;
+  }
+
+  .timeline-item.left {
+    margin-left: 0;
+    margin-right: auto;
+    transform-origin: right center;
+  }
+  .timeline-item.right {
+    margin-left: auto;
+    margin-right: 0;
+    transform-origin: left center;
+    direction: rtl; /* allow panel to align toward center line */
+  }
+
+  .timeline-item .timeline-badge {
+    position: relative;
+    top: 8px;
+    box-shadow: none;
+  }
+
+  /* place badge centered on the center line */
+  .timeline-item.left .timeline-badge { transform: translateX(calc(100% + 10px)); }
+  .timeline-item.right .timeline-badge { transform: translateX(calc(-100% - 10px)); }
+
+  .timeline-item.left .timeline-panel { text-align: left; }
+  .timeline-item.right .timeline-panel { text-align: left; direction: ltr; }
+}
+
+/* Small visual polish */
+.timeline-panel h3 { color: #eaffef; margin-bottom: 6px; font-size: 1rem; }
+.timeline-panel p { color: rgba(255,255,255,0.9); margin: 0; line-height: 1.45; font-size: 0.95rem; }
+
+/* subtle appear animation */
+.timeline-item { opacity: 0; transform: translateY(6px); animation: qfade .4s ease forwards; }
+@keyframes qfade { to { opacity: 1; transform: translateY(0); } }
+
+/* stagger animation */
+.timeline-item:nth-child(1){ animation-delay: 0ms; }
+.timeline-item:nth-child(2){ animation-delay: 60ms; }
+.timeline-item:nth-child(3){ animation-delay: 120ms; }
+.timeline-item:nth-child(4){ animation-delay: 180ms; }
+.timeline-item:nth-child(5){ animation-delay: 240ms; }
+.timeline-item:nth-child(6){ animation-delay: 300ms; }
+
+/* Accessibility: focus styles */
+.timeline-panel:focus { outline: 3px solid rgba(29,209,125,0.18); outline-offset: 2px; }
+
+/* Add/merge these rules for responsive FAQ + animations */
+
+.faq-container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+.faq-text-center { text-align: center; }
+.faq-mb-4 { margin-bottom: 1.5rem; }
+
+.faq-title { font-size: clamp(1.25rem, 3.6vw, 1.9rem); font-weight: 800; color: #eaffef; }
+.faq-subtitle { color: rgba(255,255,255,0.75); margin-top: 0.5rem; }
+
+/* Grid: stacked on mobile, two columns on md, three on lg */
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  align-items: start;
+}
+@media (min-width: 720px) {
+  .faq-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+}
+@media (min-width: 1100px) {
+  .faq-grid { grid-template-columns: repeat(3, 1fr); gap: 22px; }
+}
+
+/* Card base */
+.faq-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border-radius: 12px;
+  padding: 6px;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.18);
+  transform: translateY(8px);
+  opacity: 0;
+  transition: transform .28s ease, opacity .28s ease;
+  overflow: hidden;
+}
+
+/* visible appear */
+.faq-card.visible { transform: translateY(0); opacity: 1; }
+
+/* Button */
+.faq-btn {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  padding: 14px 16px;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  color: #e8fff0;
+  font-size: 1rem;
+}
+.faq-btn:focus { outline: 3px solid rgba(29,209,125,0.12); outline-offset: 4px; border-radius: 8px; }
+
+/* plus symbol */
+.faq-plus { font-size: 1.25rem; color: #cfeee0; transition: transform .18s ease; }
+.faq-plus.active { transform: rotate(90deg); color: #1dd17d; }
+
+/* Answer collapse / expand */
+.faq-answer {
+  padding: 0 16px 16px 16px;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.5;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height .32s ease, opacity .28s ease;
+  font-weight: 500;
+}
+
+/* expanded state */
+.faq-card.expanded .faq-answer {
+  max-height: 420px; /* large enough for content */
+  opacity: 1;
+}
+
+/* small polish */
+.faq-question-text { display: inline-block; }
+
+/* adjust spacing on larger screens */
+@media (min-width: 720px) {
+  .faq-card { padding: 4px; }
+  .faq-btn { padding: 18px; font-size: 1.02rem; }
+  .faq-answer { padding-bottom: 20px; }
+}
+
+/* Add/merge these rules to make Card responsive and accessible */
+
+/* helper */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+/* wrapper */
+.wrapper { perspective: 1200px; }
+
+/* card base */
+.card1 {
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+  height: 420px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(.2,.8,.2,1);
+  cursor: pointer;
+  outline: none;
+}
+
+/* flip state (keyboard/click toggled) */
+.card1.is-flipped { transform: rotateY(180deg); }
+
+/* front/back */
+.front-page,
+.back-page {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* front visuals */
+.front-page {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 18px;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.2);
+}
+.card1-info {
+  background: linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.45));
+  padding: 12px;
+  border-radius: 12px;
+}
+.card1-title { margin: 0; color: #fff; font-size: 1.25rem; }
+.card1-subtitle { margin: 4px 0 0; color: rgba(255,255,255,0.9); font-size: 0.95rem; }
+
+/* back visuals */
+.back-page {
+  background: linear-gradient(180deg, #07161a, #052327);
+  transform: rotateY(180deg);
+  padding: 22px;
+  color: #eaffef;
+}
+.card1-content h3 { margin-top: 0; color: #bfffe0; }
+.card1-description { color: rgba(255,255,255,0.9); line-height: 1.5; }
+
+/* small screens: reduce height and radius */
+@media (max-width: 576px) {
+  .card1 { max-width: 100%; height: 360px; border-radius: 12px; }
+  .front-page, .back-page { border-radius: 12px; }
+  .card1-title { font-size: 1.05rem; }
+}
+
+/* hover for pointer devices only */
+@media (hover: hover) and (pointer: fine) {
+  .card1:hover { transform: translateY(-6px); }
+  .card1:not(.is-flipped):hover .front-page { filter: saturate(1.05) brightness(1.02); }
+}
+
+/* focus outline for keyboard users */
+.card1:focus { box-shadow: 0 0 0 4px rgba(29,209,125,0.12); border-radius: 16px; }
+
+/* ensure card scales nicely inside grid */
+.card1 { width: 100%; }

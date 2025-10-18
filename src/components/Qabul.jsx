@@ -35,30 +35,35 @@ const steps = [
 
 const Qabul = () => {
   return (
-    <div className="qabul d-flex flex-column align-items-center text-center">
-      <div className="qabul-header mb-5">
-        <h1 className="Qabul">Qabul jarayoni</h1>
-        <p className="qabul-text">
-          Platon School o‘z farzandining kelajagi uchun befarq bo‘lmagan ota-onalarni
-          tezkor qadamlardan iborat qabul jarayoniga taklif etadi.
-        </p>
-      </div>
+    <section className="qabul py-5">
+      <div className="container">
+        <div className="qabul-header text-center mb-5">
+          <h1 className="fw-bold Qabul">Qabul jarayoni</h1>
+          <p className="qabul-text">
+            Platon School o‘z farzandining kelajagi uchun befarq bo‘lmagan ota-onalarni
+            tezkor qadamlardan iborat qabul jarayoniga taklif etadi.
+          </p>
+        </div>
 
-      {/* Steps qismi */}
-      <div className="qabul-wrapper">
-        {steps.map((step, index) => (
-          <div
-            key={step.id}
-            className={`step ${index % 2 === 0 ? "left" : "right"}`}
-          >
-            <div className="content">
-              <h3>{step.title}</h3>
-              <p>{step.desc}</p>
-            </div>
-          </div>
-        ))}
+        <ol className="qabul-wrapper timeline" aria-label="Qabul jarayoni bosqichlari">
+          {steps.map((step, index) => (
+            <li
+              key={step.id}
+              className={`timeline-item ${index % 2 === 0 ? "left" : "right"}`}
+            >
+              <div className="timeline-badge" aria-hidden>
+                <span>{step.id}</span>
+              </div>
+
+              <div className="timeline-panel">
+                <h3 className="h5 mb-1">{step.title}</h3>
+                <p className="mb-0">{step.desc}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
-    </div>
+    </section>
   );
 };
 

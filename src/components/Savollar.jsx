@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 export default function Savol() {
   const [activeIndex, setActiveIndex] = useState(null);
   const [visibleCards, setVisibleCards] = useState([]);
+  const timers = useRef([]);
 
   const questions = [
     {
@@ -28,15 +29,23 @@ export default function Savol() {
   ];
 
   useEffect(() => {
+    // stagger appear with timeouts, clear on unmount
+    setVisibleCards([]); // reset before starting
+    timers.current = [];
     questions.forEach((_, index) => {
-      setTimeout(() => {
-        setVisibleCards(prev => [...prev, index]);
-      }, index * 200);
+      const t = setTimeout(() => {
+        setVisibleCards((prev) => {
+          if (prev.includes(index)) return prev;
+          return [...prev, index];
+        });
+      }, index * 160);
+      timers.current.push(t);
     });
-  }, []);
+    return () => timers.current.forEach((t) => clearTimeout(t));
+  }, []); // run once
 
   const toggleQuestion = (index) => {
-    setActiveIndex(activeIndex === index ? null : index);
+    setActiveIndex((prev) => (prev === index ? null : index));
   };
 
   return (
@@ -48,31 +57,42 @@ export default function Savol() {
         </p>
       </div>
 
-      <div className="faq-container faq-d-flex faq-flex-column">
-        {questions.map((item, index) => (
-          <div
-            key={index}
-            className={
-              `faq-card ${index % 2 === 0 ? "faq-card-right" : "faq-card-left"} ${visibleCards.includes(index) ? 'visible' : ''}`
-            }
-            style={{ animationDelay: `${index * 0.1}s` }}
-          >
-            <button
-              className="faq-btn"
-              onClick={() => toggleQuestion(index)}
+      <div className="faq-container faq-grid">
+        {questions.map((item, index) => {
+          const isVisible = visibleCards.includes(index);
+          const isExpanded = activeIndex === index;
+          return (
+            <div
+              key={index}
+              className={`faq-card ${isVisible ? "visible" : ""} ${
+                isExpanded ? "expanded" : ""
+              }`}
+              style={{ animationDelay: `${index * 80}ms` }}
             >
-              {item.q}
-              <strong
-                className={`faq-plus ${activeIndex === index ? "active" : ""}`}
+              <button
+                id={`faq-btn-${index}`}
+                aria-controls={`faq-answer-${index}`}
+                aria-expanded={isExpanded}
+                className="faq-btn"
+                onClick={() => toggleQuestion(index)}
               >
-                {activeIndex === index ? "−" : "+"}
-              </strong>
-            </button>
-            {activeIndex === index && (
-              <div className="faq-answer">{item.a}</div>
-            )}
-          </div>
-        ))}
+                <span className="faq-question-text">{item.q}</span>
+                <strong className={`faq-plus ${isExpanded ? "active" : ""}`}>
+                  {isExpanded ? "−" : "+"}
+                </strong>
+              </button>
+
+              <div
+                id={`faq-answer-${index}`}
+                role="region"
+                aria-labelledby={`faq-btn-${index}`}
+                className="faq-answer"
+              >
+                {item.a}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </>
   );

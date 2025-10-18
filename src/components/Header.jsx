@@ -13,7 +13,7 @@ export default function Header() {
               className="img-fluid img me-2"
               src="./img/platon variant5.png"
               alt=""
-              style={{ height: "80px" }}
+              style={{ height: "64px" }}
             />
             PLATON SCHOOL
           </a>
@@ -40,7 +40,6 @@ export default function Header() {
                 </a>
               </li>
               <li className="nav-item">
-                {/* Savollar bo‘limiga smooth scroll */}
                 <a className="nav-link active" href="#savollar">
                   Savollar
                 </a>
@@ -55,7 +54,6 @@ export default function Header() {
                 </button>
               </li>
 
-              {/* Til tugmalari */}
               <li className="nav-item ms-3">
                 <div className="btn-group">
                   <button className="btn btn-sm btn-outline-light">UZ</button>
@@ -71,49 +69,20 @@ export default function Header() {
         <div
           className="modal-backdrop"
           onClick={() => setShowModal(false)}
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(0,0,0,0.6)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 9999,
-            padding: "20px",
-          }}
         >
           <div
             className="modal-card"
             onClick={(e) => e.stopPropagation()}
-            style={{
-              width: "100%",
-              maxWidth: 720,
-              // background: "#0f1724",
-              color: "#fff",
-              borderRadius: 14,
-              padding: 20,
-              textAlign: "center",
-              boxShadow: "0 10px 40px rgba(2,6,23,0.6)",
-            }}
           >
             <button
               onClick={() => setShowModal(false)}
               aria-label="Close"
-              style={{
-                position: "absolute",
-                right: 18,
-                top: 18,
-                background: "transparent",
-                border: "none",
-                color: "#fff",
-                fontSize: 20,
-                cursor: "pointer",
-              }}
+              className="modal-close"
             >
               ×
             </button>
 
-            <div style={{ background: "transparent", padding: 8 }}>
+            <div className="modal-inner">
               <ContactForm />
             </div>
           </div>

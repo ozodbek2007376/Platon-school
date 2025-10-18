@@ -9,9 +9,7 @@ export default function Hero() {
       className="d-flex align-items-center text-white"
       style={{
         minHeight: "100vh",
-        background: "url('./img/platon.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        background: "url('./img/platon.png') no-repeat center/cover",
         paddingTop: "80px",
       }}
     >
@@ -19,23 +17,15 @@ export default function Hero() {
         <div className="row">
           {/* Chap tomondagi matn */}
           <div
-            className="col-md-6 d-flex flex-column justify-content-center animate__animated animate__fadeInLeft"
-            style={{
-              background: "rgba(15, 23, 42, 0.65)",
-              boxShadow: "0 8px 32px 0 rgba(0,0,0,0.25)",
-              borderRadius: "18px",
-              padding: "40px 32px",
-              backdropFilter: "blur(4px)",
-            }}
+            className="col-12 col-md-6 d-flex flex-column justify-content-center animate__animated animate__fadeInLeft hero-panel"
           >
-            <h1 className="fw-bold display-4">
+            <h1 className="fw-bold display-4 hero-title">
               <span className="text-success">Jahon</span> tajribasiga <br />
               asoslangan <span className="text-success">milliy</span> ta'lim!
             </h1>
 
             <button
-              className="btn btn-light btn-lg mt-4 fw-bold text-success shadow"
-              style={{ borderRadius: "12px", transition: "all 0.3s ease" }}
+              className="btn btn-light btn-lg mt-4 fw-bold text-success shadow hero-btn"
               onClick={() => setShowModal(true)}
             >
               Ma’lumot olish
@@ -47,52 +37,22 @@ export default function Hero() {
       {/* Modal */}
       {showModal && (
         <div
-          className="modal-backdrop"
+          className="modal-backdrop d-flex"
           onClick={() => setShowModal(false)}
-          style={{
-            position: 'fixed',
-            inset: 0,
-            background: 'rgba(0,0,0,0.6)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 9999,
-            padding: '20px'
-          }}
         >
           <div
             className="modal-card"
             onClick={(e) => e.stopPropagation()}
-            style={{
-              width: '100%',
-              maxWidth: 720,
-              // background: '#0f1724',
-              color: '#fff',
-              borderRadius: 14,
-              padding: 20,
-              textAlign: 'center',
-              // boxShadow: '0 10px 40px rgba(2,6,23,0.6)'
-            }}
           >
             <button
               onClick={() => setShowModal(false)}
               aria-label="Close"
-              style={{
-                position: 'absolute',
-                right: 18,
-                top: 18,
-                background: 'transparent',
-                border: 'none',
-                color: '#fff',
-                fontSize: 20,
-                cursor: 'pointer'
-              }}
+              className="modal-close"
             >
               ×
             </button>
 
-            {/* ContactForm komponentini modal ichida ko'rsatish */}
-            <div style={{ background: 'transparent', padding: 8 }}>
+            <div className="modal-inner">
               <ContactForm />
             </div>
           </div>
