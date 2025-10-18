@@ -14,7 +14,7 @@ export default function Footer() {
           <h2>PLATON SCHOOL</h2>
 </div>
           <button className="btn-consult" onClick={handleConsultClick}>
-            Konsultatsiya olish
+ Konsultatsiya olish
           </button>
         </div>
 
