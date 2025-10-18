@@ -9,7 +9,7 @@ export default function Hero() {
       className="d-flex align-items-center text-white"
       style={{
         minHeight: "100vh",
-        background: "url('/img/platon.png')",
+        background: "url('./img/platon.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         paddingTop: "80px",
